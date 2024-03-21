@@ -1,11 +1,8 @@
 from random import randint
-import time
 from etherlight import Etherlight
 
-#
-
 etherlight = Etherlight("10.0.10.6")
-time.sleep(2)
+
 # for i in range(48):
 #     etherlight.set_led_color(i + 1, (0, 10, 0))
 #     # time.sleep(0.1)
@@ -18,7 +15,7 @@ time.sleep(2)
 #             etherlight.cache_led_color(i + 1, c)
 #         etherlight.flush_led_cache()
 while True:
-    for i in range(52):
-        etherlight.set_led_color(i + 1, (randint(0, 255), randint(0, 255), randint(0, 255)))
+    led_colors = [(randint(0, 255), randint(0, 255), randint(0, 255)) for _ in range(52)]
+    etherlight.set_led_colors(led_colors)  # Set all colors in a single call
     etherlight.flush()
-print("done")
+
